@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox fx:id="vBox" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spring_javafx.PrimarySceneController">
+<VBox fx:id="vBox" prefHeight="400.0" prefWidth="600.0" styleClass="padding" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spring_javafx.PrimarySceneController">
    <children>
-      <Button fx:id="btn1" mnemonicParsing="false" onAction="#setBtn1" prefHeight="25.0" prefWidth="600.0" text="load" />
-      <Button fx:id="btn2" mnemonicParsing="false" onAction="#setBtn2" prefHeight="25.0" prefWidth="600.0" text="save" />
-      <TableView fx:id="table" editable="true" prefHeight="200.0" prefWidth="200.0">
+      <Button id="loadBtn" fx:id="btn1" mnemonicParsing="false" onAction="#setBtn1" prefHeight="25.0" prefWidth="600.0" styleClass="btn" text="load" />
+      <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="662.0" />
+      <Button id="saveBtn" fx:id="btn2" mnemonicParsing="false" onAction="#setBtn2" prefHeight="25.0" prefWidth="600.0" styleClass="btn" text="save" />
+      <Separator orientation="VERTICAL" prefHeight="14.0" prefWidth="618.0" />
+      <TableView id="personTable" fx:id="table" editable="true" prefHeight="200.0" prefWidth="200.0" styleClass="padding">
         <columns>
           <TableColumn fx:id="id" prefWidth="75.0" text="Id" />
           <TableColumn fx:id="name" prefWidth="75.0" text="Név" />
@@ -20,5 +24,26 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <HBox fx:id="nameHBox">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name:">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" top="5.0" />
+               </HBox.margin>
+            </Text>
+            <TextField fx:id="nameField" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox fx:id="nameHBox1">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Age:">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" top="5.0" />
+               </HBox.margin>
+            </Text>
+            <TextField fx:id="ageField" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <Button id="addBtn" fx:id="addBtn" mnemonicParsing="false" onAction="#addElement" prefHeight="25.0" prefWidth="606.0" styleClass="btn" text="add" />
    </children>
 </VBox>

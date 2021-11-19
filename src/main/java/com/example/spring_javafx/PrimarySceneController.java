@@ -8,8 +8,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.util.converter.IntegerStringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +39,9 @@ public class PrimarySceneController implements Initializable {
     public Button btn2;
 
     @FXML
+    public Button addBtn;
+
+    @FXML
     public TableView<PersonEntity> table;
 
     @FXML
@@ -47,6 +52,15 @@ public class PrimarySceneController implements Initializable {
 
     @FXML
     public TableColumn<PersonEntity, Integer> age;
+
+    @FXML
+    public HBox nameHBox;
+
+    @FXML
+    public TextField nameField;
+
+    @FXML
+    public TextField ageField;
 
 
     @FXML
@@ -59,6 +73,17 @@ public class PrimarySceneController implements Initializable {
     private void setBtn2(ActionEvent event) {
         System.out.println("btn2");
         save();
+    }
+
+    @FXML
+    private void addElement(ActionEvent event) {
+        String name = nameField.getText();
+        Integer age = Integer.parseInt(ageField.getText());
+        PersonEntity entity = new PersonEntity();
+        entity.setName(name);
+        entity.setAge(age);
+        personService.save(entity);
+        load();
     }
 
     private void save() {
@@ -81,12 +106,13 @@ public class PrimarySceneController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         btn1.prefWidthProperty().bind(vBox.widthProperty());
         btn2.prefWidthProperty().bind(vBox.widthProperty());
+        addBtn.prefWidthProperty().bind(vBox.widthProperty());
+
         tableInit();
 
     }
 
     private void tableInit(){
-        System.out.println("inteliJ");
         name.setCellFactory(TextFieldTableCell.forTableColumn());
         age.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
