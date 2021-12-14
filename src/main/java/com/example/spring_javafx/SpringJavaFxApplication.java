@@ -14,6 +14,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class SpringJavaFxApplication extends Application {
 
+    public static Stage primaryStage;
+
     private ConfigurableApplicationContext applicationContext;
     private Parent root;
 
@@ -27,6 +29,7 @@ public class SpringJavaFxApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+        this.primaryStage = primaryStage;
         stage.setTitle("Hello World");
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add("/style.css");

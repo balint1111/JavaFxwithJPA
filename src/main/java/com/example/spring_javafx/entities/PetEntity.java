@@ -1,18 +1,18 @@
 package com.example.spring_javafx.entities;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "person")
-public class PersonEntity {
+@Table(name = "animal")
+public class PetEntity {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
@@ -24,12 +24,14 @@ public class PersonEntity {
     @Column(name = "age")
     private Integer age;
 
+//    @Column(name = "breed")
+//    private String breed;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "species")
+    private SpeciesEnum species;
+
     @ManyToOne
-    @JoinColumn(name = "tars_id", referencedColumnName = "id")
-    private PersonEntity tars;
-
-//    @OneToMany(mappedBy = "owner")
-//    private List<AnimalEntity> animals;
-
-
+    @JoinColumn(name = "owner", referencedColumnName = "id")
+    private PersonEntity owner;
 }

@@ -1,10 +1,17 @@
 package com.example.spring_javafx;
 
 import com.example.spring_javafx.entities.PersonEntity;
+import com.example.spring_javafx.entities.PetEntity;
+import com.example.spring_javafx.entities.SpeciesEnum;
 import com.example.spring_javafx.service.PersonService;
+import com.example.spring_javafx.service.PetService;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -13,10 +20,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import javafx.util.converter.IntegerStringConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -26,6 +37,9 @@ public class PrimarySceneController implements Initializable {
 
     @Autowired
     private PersonService personService;
+
+    @Autowired
+    private PetService petService;
 
     List<PersonEntity> persons;
 
@@ -62,6 +76,9 @@ public class PrimarySceneController implements Initializable {
     @FXML
     public TextField ageField;
 
+    @FXML
+    public Button select1;
+
 
     @FXML
     private void setBtn1(ActionEvent event) {
@@ -73,6 +90,11 @@ public class PrimarySceneController implements Initializable {
     private void setBtn2(ActionEvent event) {
         System.out.println("btn2");
         save();
+    }
+
+    @FXML
+    private void setSelect1(ActionEvent event) {
+
     }
 
     @FXML
@@ -126,5 +148,19 @@ public class PrimarySceneController implements Initializable {
         });
 
         load();
+    }
+
+    @PostConstruct
+    public void init() {
+        PersonEntity person = new PersonEntity(null,"Györffy Bálint", 21,null);
+        PersonEntity savedPerson = personService.save(person);
+        PersonEntity person2 = new PersonEntity(null,"Valaki", 30, savedPerson);
+        PersonEntity savedPerson2 = personService.save(person2);
+
+        PetEntity pet = new PetEntity(null,"rexi",4, SpeciesEnum.DOG,savedPerson);
+        petService.save(pet);
+
+        System.out.println(personService.getById(1L));
+        System.out.println(petService.getById(1L));
     }
 }

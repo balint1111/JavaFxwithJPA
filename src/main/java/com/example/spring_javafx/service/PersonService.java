@@ -1,16 +1,18 @@
 package com.example.spring_javafx.service;
 
 
+import com.example.spring_javafx.entities.PetEntity;
 import com.example.spring_javafx.entities.PersonEntity;
 import com.example.spring_javafx.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
+@Service("personService")
 public class PersonService {
     private PersonRepository repository;
 
@@ -36,15 +38,10 @@ public class PersonService {
         return repository.saveAll(entities);
     }
 
-
-
-    @PostConstruct
-    public void init() {
-        PersonEntity person = new PersonEntity(null,"Egyik", 25,null);
-        PersonEntity savedPerson = save(person);
-        PersonEntity person2 = new PersonEntity(null,"Masik", 30, savedPerson);
-        PersonEntity savedPerson2 = save(person2);
-
-        System.out.println(getById(1L));
+    public List<PetEntity> getAnimals(){
+        return new ArrayList<>();
     }
+
+
+
 }

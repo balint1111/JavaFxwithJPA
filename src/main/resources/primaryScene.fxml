@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<VBox fx:id="vBox" prefHeight="400.0" prefWidth="600.0" styleClass="padding" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spring_javafx.PrimarySceneController">
+<VBox fx:id="vBox" prefHeight="400.0" prefWidth="600.0" styleClass="padding" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spring_javafx.PrimarySceneController">
    <children>
       <Button id="loadBtn" fx:id="btn1" mnemonicParsing="false" onAction="#setBtn1" prefHeight="25.0" prefWidth="600.0" styleClass="btn" text="load" />
       <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="662.0" />
@@ -45,5 +42,6 @@
          </children>
       </HBox>
       <Button id="addBtn" fx:id="addBtn" mnemonicParsing="false" onAction="#addElement" prefHeight="25.0" prefWidth="606.0" styleClass="btn" text="add" />
+      <Button fx:id="select1" mnemonicParsing="false" onAction="#setSelect1" text="Button" />
    </children>
 </VBox>
