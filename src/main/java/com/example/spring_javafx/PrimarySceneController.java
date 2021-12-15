@@ -189,6 +189,11 @@ public class PrimarySceneController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Locale.setDefault(Locale.GERMAN);         Javafx nem támogatja a magyar nyelvet
+
+        personGenderField.setItems(FXCollections.observableArrayList(GenderEnum.values()));
+        petSpeciesField.setItems(FXCollections.observableArrayList(SpeciesEnum.values()));
+        personGenderSelect.setItems(FXCollections.observableArrayList(GenderEnum.values()));
+
         tableInit();
     }
 
