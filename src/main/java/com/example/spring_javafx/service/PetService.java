@@ -39,6 +39,10 @@ public class PetService {
         return repository.findById(id).orElse(null);
     }
 
+    public List<PetEntity> getAllByOwner(PersonEntity owner){ return repository.findAllByOwner(owner);}
+
+    public List<PetEntity> getAllByNameContaining(String name){ return repository.findAllByNameContaining(name);}
+
     public List<PetEntity> getPets(){ return repository.findAll();}
 
     static final String JDBC_DRIVER = "org.h2.Driver";

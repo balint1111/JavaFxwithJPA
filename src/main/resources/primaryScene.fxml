@@ -6,18 +6,18 @@
 <?import javafx.scene.text.*?>
 
 <?import javafx.scene.control.cell.PropertyValueFactory?>
-<HBox fx:id="hBox" prefHeight="458.0" prefWidth="674.0" styleClass="padding" xmlns="http://javafx.com/javafx/11.0.2"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spring_javafx.PrimarySceneController">
+<HBox fx:id="hBox" prefHeight="458.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/11.0.2"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spring_javafx.PrimarySceneController"
+      style="-fx-font-size: 15px;">
     <children>
-        <VBox fx:id="vBox1" prefHeight="458.0" prefWidth="344.0">
+        <VBox fx:id="vBox1" prefHeight="458.0" prefWidth="${hBox.width*0.5}" styleClass="padding">
             <children>
-                <Button id="loadBtn" fx:id="btn1" mnemonicParsing="false" onAction="#setBtn1" prefHeight="25.0"
-                        prefWidth="600.0" styleClass="btn" text="load"/>
-                <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="662.0"/>
-                <Button id="saveBtn" fx:id="btn2" mnemonicParsing="false" onAction="#setBtn2" prefHeight="25.0"
-                        prefWidth="600.0" styleClass="btn" text="save"/>
-                <Separator orientation="VERTICAL" prefHeight="14.0" prefWidth="618.0"/>
-                <TableView id="personTable" fx:id="table" prefHeight="200.0" prefWidth="270.0" styleClass="padding">
+                <HBox styleClass="paddingTop, paddingBottom">
+                    <Button mnemonicParsing="false" onAction="#personLoadAction" maxWidth="1.7976931348623157E308"
+                            prefWidth="150.0" HBox.hgrow="ALWAYS" text="Eredeti tábla megjelenítése"/>
+                </HBox>
+                <TableView fx:id="personTable" prefHeight="200.0" prefWidth="270.0" maxHeight="1.7976931348623157E308"
+                           VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="personIdColumn" prefWidth="75.0" text="Id">
                             <cellValueFactory>
@@ -44,7 +44,7 @@
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                     </columnResizePolicy>
                 </TableView>
-                <HBox>
+                <HBox styleClass="paddingTop">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Név:">
                             <HBox.margin>
@@ -55,7 +55,7 @@
                                    HBox.hgrow="ALWAYS"/>
                     </children>
                 </HBox>
-                <HBox>
+                <HBox styleClass="paddingTop">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kor:">
                             <HBox.margin>
@@ -66,7 +66,7 @@
                                    HBox.hgrow="ALWAYS"/>
                     </children>
                 </HBox>
-                <HBox>
+                <HBox styleClass="paddingTop">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nem:">
                             <HBox.margin>
@@ -77,14 +77,36 @@
                                   HBox.hgrow="ALWAYS"/>
                     </children>
                 </HBox>
-                <Button fx:id="addPersonBtn" mnemonicParsing="false" onAction="#addPerson" prefHeight="25.0"
-                        prefWidth="606.0" maxWidth="1.7976931348623157E308" styleClass="btn" text="Hozzáadás" HBox.hgrow="ALWAYS"/>
-                <Button fx:id="select1" mnemonicParsing="false" onAction="#setSelect1" text="Button"/>
+                <HBox styleClass="paddingTop">
+                    <Button fx:id="addPersonBtn" mnemonicParsing="false" onAction="#addPerson" prefHeight="25.0"
+                            prefWidth="606.0" maxWidth="1.7976931348623157E308" text="Hozzáadás" HBox.hgrow="ALWAYS"/>
+                </HBox>
+
+                <HBox style="-fx-padding: 100px 0 0 0;">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nemre való szűrés:">
+                            <HBox.margin>
+                                <Insets left="10.0" right="10.0" top="5.0"/>
+                            </HBox.margin>
+                        </Text>
+                        <ComboBox fx:id="personGenderSelect" maxWidth="1.7976931348623157E308" prefWidth="150.0"
+                                  HBox.hgrow="ALWAYS"/>
+                        <Button mnemonicParsing="false" onAction="#selectByGender" text="Szűrés"
+                                maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+                    </children>
+                </HBox>
+
+
             </children>
         </VBox>
-        <VBox fx:id="vBox2" prefHeight="458.0" prefWidth="330.0">
+        <VBox fx:id="vBox2" prefHeight="458.0" prefWidth="${hBox.width*0.5}" styleClass="padding">
             <children>
-                <TableView fx:id="petTable" prefHeight="200.0" prefWidth="330.0" styleClass="padding">
+                <HBox styleClass="paddingTop, paddingBottom">
+                    <Button mnemonicParsing="false" onAction="#petLoadAction" maxWidth="1.7976931348623157E308"
+                            prefWidth="150.0" HBox.hgrow="ALWAYS" text="Eredeti tábla megjelenítése"/>
+                </HBox>
+                <TableView fx:id="petTable" prefHeight="200.0" maxHeight="1.7976931348623157E308" VBox.vgrow="ALWAYS"
+                           prefWidth="330.0">
                     <columns>
                         <TableColumn fx:id="petId" prefWidth="${petTable.width*0.1}" text="Id">
                             <cellValueFactory>
@@ -106,14 +128,14 @@
                                 <PropertyValueFactory property="species"/>
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn fx:id="petOwnerIdColumn" prefWidth="${petTable.width*0.57}" text="Gazda Id">
+                        <TableColumn fx:id="petOwnerIdColumn" prefWidth="${petTable.width*0.59}" text="Gazda">
                             <cellValueFactory>
                                 <PropertyValueFactory property="owner"/>
                             </cellValueFactory>
                         </TableColumn>
                     </columns>
                 </TableView>
-                <HBox>
+                <HBox styleClass="paddingTop">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Név:">
                             <HBox.margin>
@@ -124,7 +146,7 @@
                                    HBox.hgrow="ALWAYS"/>
                     </children>
                 </HBox>
-                <HBox>
+                <HBox styleClass="paddingTop">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Kor:">
                             <HBox.margin>
@@ -135,7 +157,7 @@
                                    HBox.hgrow="ALWAYS"/>
                     </children>
                 </HBox>
-                <HBox>
+                <HBox styleClass="paddingTop">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Faj:">
                             <HBox.margin>
@@ -146,7 +168,7 @@
                                   HBox.hgrow="ALWAYS"/>
                     </children>
                 </HBox>
-                <HBox fx:id="ownerHBox">
+                <HBox styleClass="paddingTop">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gazda:">
                             <HBox.margin>
@@ -157,8 +179,38 @@
                                   HBox.hgrow="ALWAYS"/>
                     </children>
                 </HBox>
-                <Button fx:id="addPetBtn" mnemonicParsing="false" onAction="#addPet" prefHeight="25.0"
-                        prefWidth="606.0" maxWidth="1.7976931348623157E308" styleClass="btn" text="Hozzáadás" HBox.hgrow="ALWAYS"/>
+                <HBox styleClass="paddingTop">
+                    <Button fx:id="addPetBtn" mnemonicParsing="false" onAction="#addPet" prefHeight="25.0"
+                            prefWidth="606.0" maxWidth="1.7976931348623157E308" text="Hozzáadás"
+                            HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <HBox style="-fx-padding: 100px 0 0 0;">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Gazdára való szűrés:">
+                            <HBox.margin>
+                                <Insets left="10.0" right="10.0" top="5.0"/>
+                            </HBox.margin>
+                        </Text>
+                        <ComboBox fx:id="petOwnerSelect" maxWidth="1.7976931348623157E308" prefWidth="150.0"
+                                  HBox.hgrow="ALWAYS"/>
+                        <Button mnemonicParsing="false" onAction="#selectByOwner" text="Szűrés"
+                                maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+                    </children>
+                </HBox>
+                <HBox styleClass="paddingTop">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Névre való szűrés:">
+                            <HBox.margin>
+                                <Insets left="10.0" right="10.0" top="5.0"/>
+                            </HBox.margin>
+                        </Text>
+                        <TextField fx:id="petNameSelect" maxWidth="1.7976931348623157E308" prefWidth="150.0"
+                                   HBox.hgrow="ALWAYS"/>
+                        <Button mnemonicParsing="false" onAction="#selectByName" text="Szűrés"
+                                maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+                    </children>
+                </HBox>
+
             </children>
         </VBox>
     </children>

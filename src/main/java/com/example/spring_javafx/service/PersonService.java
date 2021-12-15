@@ -47,9 +47,7 @@ public class PersonService {
         return repository.saveAll(entities);
     }
 
-    public List<PetEntity> getAnimals(){
-        return new ArrayList<>();
-    }
+    public List<PersonEntity> getAllByGender(GenderEnum gender){ return repository.findAllByGender(gender);}
 
 
     static final String JDBC_DRIVER = "org.h2.Driver";

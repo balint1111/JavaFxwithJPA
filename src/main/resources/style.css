@@ -1,3 +1,9 @@
 .padding{
   -fx-padding: 10px;
 }
+.paddingTop{
+  -fx-padding: 6px 0 0 0;
+}
+.paddingBottom{
+  -fx-padding: 0 0 6px 0;
+}

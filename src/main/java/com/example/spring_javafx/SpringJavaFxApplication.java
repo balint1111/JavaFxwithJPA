@@ -31,7 +31,7 @@ public class SpringJavaFxApplication extends Application {
     public void start(Stage stage) throws Exception {
         this.primaryStage = primaryStage;
         stage.setTitle("Hello World");
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1200, 600);
         scene.getStylesheets().add("/style.css");
 //        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setScene(scene);
