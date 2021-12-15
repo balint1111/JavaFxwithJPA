@@ -109,6 +109,7 @@ public class PersonService {
         CriteriaQuery<PersonEntity> cq = cb.createQuery(PersonEntity.class);
 
         Root<PersonEntity> person = cq.from(PersonEntity.class);
+        //cq.where(cb.equal(person.get("id"),1L));      //Where person.id=1
         cq.select(person);
 
         TypedQuery<PersonEntity> query = em.createQuery(cq);

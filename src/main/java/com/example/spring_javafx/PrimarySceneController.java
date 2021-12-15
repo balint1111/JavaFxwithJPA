@@ -29,56 +29,56 @@ public class PrimarySceneController implements Initializable {
     @Autowired
     private PetService petService;
 
-    List<PersonEntity> persons;
+    private List<PersonEntity> persons;
 
-    List<PetEntity> pets;
-
-
-    @FXML
-    public TableView<PersonEntity> personTable;
-
-    @FXML
-    public TableView<PetEntity> petTable;
+    private List<PetEntity> pets;
 
 
     @FXML
-    public TextField personNameField;
+    private TableView<PersonEntity> personTable;
 
     @FXML
-    public TextField personAgeField;
+    private TableView<PetEntity> petTable;
+
 
     @FXML
-    ComboBox<GenderEnum> personGenderField;
+    private TextField personNameField;
 
     @FXML
-    public TextField petNameField;
+    private TextField personAgeField;
 
     @FXML
-    public TextField petAgeField;
+    private ComboBox<GenderEnum> personGenderField;
 
     @FXML
-    ComboBox<SpeciesEnum> petSpeciesField;
+    private TextField petNameField;
 
     @FXML
-    ComboBox<PersonEntity> petOwnerField;
+    private TextField petAgeField;
 
     @FXML
-    ComboBox<GenderEnum> personGenderSelect;
+    private ComboBox<SpeciesEnum> petSpeciesField;
 
     @FXML
-    ComboBox<PersonEntity> petOwnerSelect;
+    private ComboBox<PersonEntity> petOwnerField;
 
     @FXML
-    public TextField petNameSelect;
+    private ComboBox<GenderEnum> personGenderSelect;
 
     @FXML
-    public TextField personNameSelect;
+    private ComboBox<PersonEntity> petOwnerSelect;
 
     @FXML
-    ComboBox<PetEntity> petSelect;
+    private TextField petNameSelect;
 
     @FXML
-    ComboBox<PersonEntity> personSelect;
+    private TextField personNameSelect;
+
+    @FXML
+    private ComboBox<PetEntity> petSelect;
+
+    @FXML
+    private ComboBox<PersonEntity> personSelect;
 
 
     //Személyek betöltése (Összes tárolt)

@@ -66,7 +66,7 @@ public class PetService {
     @Value("${spring.datasource.password}")
     private String PASS;
 
-    public List<PetEntity> jdbcGetPersons() {
+    public List<PetEntity> jdbcGetPets() {
         Connection conn = null;
         Statement stmt = null;
 
