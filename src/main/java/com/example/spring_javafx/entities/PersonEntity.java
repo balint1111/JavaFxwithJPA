@@ -24,12 +24,11 @@ public class PersonEntity {
     @Column(name = "age")
     private Integer age;
 
-    @ManyToOne
-    @JoinColumn(name = "tars_id", referencedColumnName = "id")
-    private PersonEntity tars;
+    @Column(name = "gender")
+    @Enumerated(EnumType.STRING)
+    private GenderEnum gender;
 
-//    @OneToMany(mappedBy = "owner")
-//    private List<AnimalEntity> animals;
-
+//    @OneToMany( mappedBy = "owner")
+//    private List<PetEntity> pets;
 
 }
