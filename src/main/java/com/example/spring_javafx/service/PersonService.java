@@ -2,14 +2,12 @@ package com.example.spring_javafx.service;
 
 
 import com.example.spring_javafx.entities.GenderEnum;
-import com.example.spring_javafx.entities.PetEntity;
 import com.example.spring_javafx.entities.PersonEntity;
 import com.example.spring_javafx.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -31,11 +29,11 @@ public class PersonService {
     }
 
 
-    public PersonEntity save(PersonEntity entity){
+    public PersonEntity save(PersonEntity entity) {
         return repository.save(entity);
     }
 
-    public PersonEntity getById(Long id){
+    public PersonEntity getById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
@@ -43,11 +41,21 @@ public class PersonService {
         return repository.findAll();
     }
 
+    public List<PersonEntity> getAllByNameContaining(String name) {
+        return repository.findAllByNameContaining(name);
+    }
+
     public List<PersonEntity> saveAll(List<PersonEntity> entities) {
         return repository.saveAll(entities);
     }
 
-    public List<PersonEntity> getAllByGender(GenderEnum gender){ return repository.findAllByGender(gender);}
+    public void delete(PersonEntity person) {
+        repository.delete(person);
+    }
+
+    public List<PersonEntity> getAllByGender(GenderEnum gender) {
+        return repository.findAllByGender(gender);
+    }
 
 
     static final String JDBC_DRIVER = "org.h2.Driver";
@@ -60,7 +68,7 @@ public class PersonService {
     @Value("${spring.datasource.password}")
     private String PASS;
 
-    public List<PersonEntity> jdbcGetPersons(){
+    public List<PersonEntity> jdbcGetPersons() {
         Connection conn = null;
         Statement stmt = null;
 
@@ -68,10 +76,10 @@ public class PersonService {
         try {
             Class.forName(JDBC_DRIVER);
 
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
             stmt = conn.createStatement();
-            String sql =  "SELECT * FROM person";
+            String sql = "SELECT * FROM person";
 
             ResultSet resultSet = stmt.executeQuery(sql);
 
@@ -80,14 +88,14 @@ public class PersonService {
                 String name = resultSet.getString("name");
                 Integer age = resultSet.getInt("age");
                 GenderEnum gender = GenderEnum.valueOf(resultSet.getString("gender"));
-                ret.add(new PersonEntity(id,name,age,gender));
+                ret.add(new PersonEntity(id, name, age, gender));
             }
 
             stmt.close();
             conn.close();
-        } catch(SQLException se) {
+        } catch (SQLException se) {
             se.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return ret;
@@ -96,7 +104,7 @@ public class PersonService {
     @PersistenceContext
     private EntityManager em;
 
-    public List<PersonEntity> criteriaGetPersons(){
+    public List<PersonEntity> criteriaGetPersons() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<PersonEntity> cq = cb.createQuery(PersonEntity.class);
 
@@ -106,7 +114,6 @@ public class PersonService {
         TypedQuery<PersonEntity> query = em.createQuery(cq);
         return query.getResultList();
     }
-
 
 
 }

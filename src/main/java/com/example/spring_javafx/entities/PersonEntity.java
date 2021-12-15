@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -27,8 +26,5 @@ public class PersonEntity {
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     private GenderEnum gender;
-
-//    @OneToMany( mappedBy = "owner")
-//    private List<PetEntity> pets;
 
 }

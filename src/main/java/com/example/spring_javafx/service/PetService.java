@@ -1,15 +1,14 @@
 package com.example.spring_javafx.service;
 
 import com.example.spring_javafx.entities.GenderEnum;
-import com.example.spring_javafx.entities.PetEntity;
 import com.example.spring_javafx.entities.PersonEntity;
+import com.example.spring_javafx.entities.PetEntity;
 import com.example.spring_javafx.entities.SpeciesEnum;
 import com.example.spring_javafx.repository.PetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -20,7 +19,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("animalService")
+@Service("petService")
 public class PetService {
     private PetRepository repository;
 
@@ -33,17 +32,29 @@ public class PetService {
         return repository.save(entity);
     }
 
-    public List<PetEntity> saveAll(List<PetEntity> entities){ return repository.saveAll(entities);}
+    public List<PetEntity> saveAll(List<PetEntity> entities) {
+        return repository.saveAll(entities);
+    }
+
+    public void delete(PetEntity pet) {
+        repository.delete(pet);
+    }
 
     public PetEntity getById(Long id) {
         return repository.findById(id).orElse(null);
     }
 
-    public List<PetEntity> getAllByOwner(PersonEntity owner){ return repository.findAllByOwner(owner);}
+    public List<PetEntity> getAllByOwner(PersonEntity owner) {
+        return repository.findAllByOwner(owner);
+    }
 
-    public List<PetEntity> getAllByNameContaining(String name){ return repository.findAllByNameContaining(name);}
+    public List<PetEntity> getAllByNameContaining(String name) {
+        return repository.findAllByNameContaining(name);
+    }
 
-    public List<PetEntity> getPets(){ return repository.findAll();}
+    public List<PetEntity> getPets() {
+        return repository.findAll();
+    }
 
     static final String JDBC_DRIVER = "org.h2.Driver";
     @Value("${spring.datasource.url}")
@@ -55,7 +66,7 @@ public class PetService {
     @Value("${spring.datasource.password}")
     private String PASS;
 
-    public List<PetEntity> jdbcGetPersons(){
+    public List<PetEntity> jdbcGetPersons() {
         Connection conn = null;
         Statement stmt = null;
 
@@ -63,10 +74,10 @@ public class PetService {
         try {
             Class.forName(JDBC_DRIVER);
 
-            conn = DriverManager.getConnection(DB_URL,USER,PASS);
+            conn = DriverManager.getConnection(DB_URL, USER, PASS);
 
             stmt = conn.createStatement();
-            String sql =  "SELECT * FROM pet";
+            String sql = "SELECT * FROM pet";
 
             ResultSet resultSet = stmt.executeQuery(sql);
 
@@ -80,24 +91,24 @@ public class PetService {
                 PersonEntity owner = null;
 
                 Statement stmt2 = conn.createStatement();
-                String sql2 =  "SELECT * FROM person where id=" + ownerId;
+                String sql2 = "SELECT * FROM person where id=" + ownerId;
                 ResultSet resultSet2 = stmt2.executeQuery(sql2);
                 while (resultSet2.next()) {
                     Long personId = resultSet2.getLong("id");
                     String personName = resultSet2.getString("name");
                     Integer personAge = resultSet2.getInt("age");
                     GenderEnum gender = GenderEnum.valueOf(resultSet2.getString("gender"));
-                    owner = new PersonEntity(personId,personName,personAge,gender);
+                    owner = new PersonEntity(personId, personName, personAge, gender);
                 }
 
-                ret.add(new PetEntity(id,name,age,species,owner));
+                ret.add(new PetEntity(id, name, age, species, owner));
             }
 
             stmt.close();
             conn.close();
-        } catch(SQLException se) {
+        } catch (SQLException se) {
             se.printStackTrace();
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return ret;
@@ -106,7 +117,7 @@ public class PetService {
     @PersistenceContext
     private EntityManager em;
 
-    public List<PetEntity> criteriaGetPets(){
+    public List<PetEntity> criteriaGetPets() {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<PetEntity> cq = cb.createQuery(PetEntity.class);
 

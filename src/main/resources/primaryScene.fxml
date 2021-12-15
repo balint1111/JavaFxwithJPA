@@ -2,10 +2,9 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <HBox fx:id="hBox" prefHeight="458.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/11.0.2"
       xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.spring_javafx.PrimarySceneController"
       style="-fx-font-size: 15px;">
@@ -92,6 +91,34 @@
                         <ComboBox fx:id="personGenderSelect" maxWidth="1.7976931348623157E308" prefWidth="150.0"
                                   HBox.hgrow="ALWAYS"/>
                         <Button mnemonicParsing="false" onAction="#selectByGender" text="Szűrés"
+                                maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+                    </children>
+                </HBox>
+
+                <HBox styleClass="paddingTop">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Névre való szűrés:">
+                            <HBox.margin>
+                                <Insets left="10.0" right="10.0" top="5.0"/>
+                            </HBox.margin>
+                        </Text>
+                        <TextField fx:id="personNameSelect" maxWidth="1.7976931348623157E308" prefWidth="150.0"
+                                   HBox.hgrow="ALWAYS"/>
+                        <Button mnemonicParsing="false" onAction="#selectPersonByName" text="Szűrés"
+                                maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+                    </children>
+                </HBox>
+
+                <HBox styleClass="paddingTop">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Személy törlése:">
+                            <HBox.margin>
+                                <Insets left="10.0" right="10.0" top="5.0"/>
+                            </HBox.margin>
+                        </Text>
+                        <ComboBox fx:id="personSelect" maxWidth="1.7976931348623157E308" prefWidth="150.0"
+                                  HBox.hgrow="ALWAYS"/>
+                        <Button mnemonicParsing="false" onAction="#deletePerson" text="Törlés"
                                 maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
                     </children>
                 </HBox>
@@ -206,7 +233,21 @@
                         </Text>
                         <TextField fx:id="petNameSelect" maxWidth="1.7976931348623157E308" prefWidth="150.0"
                                    HBox.hgrow="ALWAYS"/>
-                        <Button mnemonicParsing="false" onAction="#selectByName" text="Szűrés"
+                        <Button mnemonicParsing="false" onAction="#selectPetByName" text="Szűrés"
+                                maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
+                    </children>
+                </HBox>
+
+                <HBox styleClass="paddingTop">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Háziállat törlése:">
+                            <HBox.margin>
+                                <Insets left="10.0" right="10.0" top="5.0"/>
+                            </HBox.margin>
+                        </Text>
+                        <ComboBox fx:id="petSelect" maxWidth="1.7976931348623157E308" prefWidth="150.0"
+                                  HBox.hgrow="ALWAYS"/>
+                        <Button mnemonicParsing="false" onAction="#deletePet" text="Törlés"
                                 maxWidth="1.7976931348623157E308" prefWidth="150.0" HBox.hgrow="ALWAYS"/>
                     </children>
                 </HBox>

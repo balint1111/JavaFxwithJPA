@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.kordamp.bootstrapfx.BootstrapFX;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -14,7 +13,6 @@ import org.springframework.context.ConfigurableApplicationContext;
 @SpringBootApplication
 public class SpringJavaFxApplication extends Application {
 
-    public static Stage primaryStage;
 
     private ConfigurableApplicationContext applicationContext;
     private Parent root;
@@ -29,9 +27,8 @@ public class SpringJavaFxApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        this.primaryStage = primaryStage;
-        stage.setTitle("Hello World");
-        Scene scene = new Scene(root, 1200, 600);
+        stage.setTitle("Objektum orientált adatbázis demó");
+        Scene scene = new Scene(root, 1200, 700);
         scene.getStylesheets().add("/style.css");
 //        scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         stage.setScene(scene);
